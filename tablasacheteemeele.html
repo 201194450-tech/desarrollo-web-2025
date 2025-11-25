@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tablas</title>
+    <link rel="icon" type="image/x-icon" href="gun.png">
+    <style>
+       * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+        font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        body {
+        background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 20px;
+        }
+        .container {
+        max-width: 900px;
+        width: 100%;
+        background-color: white;
+        border-radius: 15px;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+        overflow: hidden;
+        margin: 20px 0;
+        }
+        header {
+        background: linear-gradient(to right, #2c3e50, #4a6491);
+        color: white;
+        padding: 25px;
+        text-align: center;
+        }
+       table {
+        width: 100%;
+        border-collapse: collapse;
+        font-size: 1.1rem;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+        }
+    th, td {
+        border: 1px solid #ddd;
+        padding: 16px;
+        text-align: center;
+        transition: all 0.3s ease;
+    }
+    th {
+        background-color: #2c3e50;
+        color: white;
+        font-weight: 600;
+        font-size: 1.2rem;
+    }
+            .columna_t {
+
+            background-color: #61a3e6;
+
+            font-weight: bold;
+
+            width: 15%;
+
+        }
+
+        
+
+        .columna_d {
+
+            width: 21.25%;
+
+        }
+
+        
+
+        .course-cell {
+
+            background-color: #e8f4fd;
+
+            font-weight: 500;
+
+            color: #2c3e50;
+
+            position: relative;
+
+            overflow: hidden;
+
+        }
+
+        
+
+        .course-cell:hover {
+
+            background-color: #d4edff;
+
+            transform: scale(1.03);
+
+            box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+     
+    </style>
+</head>
+
+<body>
+    <main class="container">
+    <table border="1" cellspacing="5" cellpadding="10" width="100%">
+ <caption><tr style="background-color: black;"> <header><h1 style="color: white;"">horario de clases</h1></header></tr></caption>
+ <tr>
+    <th class="columna_t">hora</th>
+    <th class="columna_d">lunes</th>
+    <th class="columna_d">martes</th>
+    <th class="columna_d">jueves</th>
+ </tr>
+ <tr>
+    <td class="course-cell">10:00</td>
+    <td rowspan="4">pintura <br> <img src="paint-palette.png" alt="paleta de pintura" width=50px></td>
+    <td rowspan="2">tennis <br> <img src="tennis.png" alt="raqueta de tennis y pelota" width="50px"></td>
+    <td>inglés</td>
+ </tr>
+ <tr>
+    <td class="course-cell">11:00</td>
+    <td rowspan="3">futbol <br> <img src="ball.png" alt="balón de futbol" width="50px"></td>
+ </tr>
+  <tr>
+    <td class="course-cell">12:00</td>
+    <td rowspan="2">musica <br> <img src="vinyl-record.png" alt="disco de vinilo" width="50px"></td>
+ </tr>
+ <tr>
+    <td class="course-cell">13:00</td>
+</tr>
+</table>
+</main>
+</body>
+</html>
