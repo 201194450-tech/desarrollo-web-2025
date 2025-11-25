@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Simulación de frames con CSS Grid</title>
+  <style>
+    /* Reset simple */
+    *{box-sizing:border-box;margin:0;padding:0}
+    html,body{height:100%}
+
+    /* Contenedor principal usando Grid para simular frames */
+    .grid-root{
+      display:grid;
+      grid-template-columns: 220px 1fr; /* sidebar + contenido */
+      grid-template-rows: 64px 1fr 40px; /* header, main, footer */
+      grid-template-areas:
+        "header header"
+        "sidebar main"
+        "footer footer";
+      height:100vh;
+      gap:6px;
+      font-family:system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
+      background:#718396;
+      padding:8px;
+    }
+
+    header{
+      grid-area:header;
+      background:linear-gradient(180deg,#ffffff,#f3f6f9);
+      border:1px solid #cfd8e3;
+      display:flex;
+      align-items:center;
+      padding:12px 16px;
+      border-radius:6px;
+      box-shadow:0 1px 0 rgba(0,0,0,0.03) inset;
+    }
+
+    nav{
+      grid-area:sidebar;
+      background:#fff;
+      border:1px solid #cfd8e3;
+      border-radius:6px;
+      overflow:auto;
+      padding:12px;
+    }
+
+    main{
+      grid-area:main;
+      background:#fff;
+      border:1px solid #cfd8e3;
+      border-radius:6px;
+      padding:12px;
+      overflow:auto; /* como un frame */
+    }
+
+    footer{
+      grid-area:footer;
+      background:#f7f9fc;
+      border:1px solid #cfd8e3;
+      border-radius:6px;
+      display:flex;
+      align-items:center;
+      padding:8px 12px;
+      font-size:14px;
+      color:#4b5563;
+    }
+
+    /* Estilos dentro de "frames" */
+    .frame-title{font-weight:600;color:#0f172a;margin-bottom:6px}
+    .frame-content{line-height:1.5;color:#334155}
+
+    /* Links en el sidebar que cargan contenido en el 'frame' principal */
+    .nav-list{list-style:none}
+    .nav-list li{margin-bottom:8px}
+    .nav-list a{
+      display:block;padding:8px;border-radius:6px;text-decoration:none;color:#0f172a;
+      border:1px solid transparent;
+    }
+    .nav-list a:hover{background:#f1f5f9;border-color:#e2e8f0}
+
+    /* Responsive: en pantallas pequeñas apilamos el sidebar debajo del header */
+    @media (max-width:720px){
+      .grid-root{
+        grid-template-columns:1fr;
+        grid-template-rows:64px auto 1fr 40px;
+        grid-template-areas:
+          "header"
+          "sidebar"
+          "main"
+          "footer";
+      }
+    }
+
+    /* Pequeño estilo para mostrar que son 'frames' separados */
+    .fake-frame{
+      border:2px dashed rgba(99,102,241,0.08);
+      padding:10px;border-radius:6px;
+    }
+
+    /* Botones y utilidades */
+    .btn{display:inline-block;padding:6px 10px;border-radius:6px;border:1px solid #cbd5e1;background:#fff;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div class="grid-root">
+    <header>
+      <div style="display:flex;align-items:center;gap:12px;">
+        <img src="data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='36' height='36'><rect rx='6' width='36' height='36' fill='%233b82f6'/><text x='50%' y='54%' fill='white' font-size='18' font-family='Arial' text-anchor='middle' dominant-baseline='middle'>G</text></svg>" alt="logo">
+        <div>
+          <div style="font-weight:700">Mi app con "frames"</div>
+          <div style="font-size:12px;color:#6b7280">Simulación de frames usando CSS Grid</div>
+        </div>
+      </div>
+    </header>
+
+    <nav>
+      <div class="frame-title">Menú (clic para cargar)</div>
+      <ul class="nav-list">
+        <li><a href="#" data-content="home">Inicio</a></li>
+        <li><a href="#" data-content="about">Acerca</a></li>
+        <li><a href="#" data-content="docs">Documentación</a></li>
+        <li><a href="#" data-content="contact">Contacto</a></li>
+      </ul>
+
+      <hr style="margin:10px 0;border:none;border-top:1px solid #eef2f7">
+      <div style="font-size:13px;color:#475569">Este panel actúa como un panel lateral tipo frame: puedes hacer scroll independiente y cargar contenido en el panel principal.</div>
+    </nav>
+
+    <main id="main-frame" class="fake-frame">
+      <div class="frame-title">Inicio</div>
+      <div class="frame-content">
+        <p>Bienvenido. Aquí se mostrará contenido similar al de un frame (iframe), pero sin usar elementos &lt;iframe&gt; — todo controlado con HTML/CSS/JS.</p>
+
+        <h3>¿Por qué simular frames?</h3>
+        <ul>
+          <li>Mismo comportamiento de paneles con scroll independiente.</li>
+          <li>Más control sobre el estilo y la comunicación entre paneles.</li>
+          <li>Evitas problemas de seguridad e sandboxing de iframes cuando no los necesitas.</li>
+        </ul>
+
+        <p>Haz clic en el menú lateral para cargar otras secciones.</p>
+      </div>
+    </main>
+
+    <footer>
+      <div style="display:flex;justify-content:space-between;align-items:center;width:100%;">
+        <div>Pie de página — 2025</div>
+        <div>
+          <a class="btn" href="#" onclick="alert('Esto es un ejemplo')">Acción</a>
+        </div>
+      </div>
+    </footer>
+  </div>
+
+  <script>
+    // Contenidos simples para simular navegación entre frames
+    const contents = {
+      home: `<h2>Inicio</h2><p>Contenido de la página principal. Puedes reemplazar esto con cualquier HTML que quieras mostrar dentro del "frame" principal. <iframe width="870" height="499" src="https://www.youtube.com/embed/owuJ-5IvE04?list=RDowuJ-5IvE04" title="The Guadaloops - Somnífera (Sesión En Vivo) | Paradójico" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="origin" allowfullscreen></iframe></p>`,
+      about:`<h2>Acerca</h2><p>Esta es una sección "Acerca". Muestra información sobre la app, el equipo o instrucciones.</p>`,
+      docs:`<h2>Documentación</h2><p>Lista de pasos, tutoriales y recursos. Observa que el contenedor principal puede hacer scroll independientemente del sidebar.</p><ol><li>Paso 1</li><li>Paso 2</li></ol>`,
+      contact:`<h2>Contacto</h2><p>Teléfono: (555) 555-555<br>Correo: ejemplo@dominio.com</p>`
+    }
+
+    // Delegación de clicks en el nav para cargar contenido
+    document.querySelector('nav').addEventListener('click', e=>{
+      const a = e.target.closest('a[data-content]');
+      if(!a) return;
+      e.preventDefault();
+      const key = a.dataset.content;
+      const frame = document.getElementById('main-frame');
+      frame.querySelector('.frame-title').textContent = a.textContent;
+      frame.querySelector('.frame-content').innerHTML = contents[key] || '<p>Sin contenido</p>';
+
+      // Opcional: marca el item activo
+      document.querySelectorAll('.nav-list a').forEach(x=>x.style.background='');
+      a.style.background='#eef2ff';
+    });
+
+    // Cargar contenido inicial
+    document.querySelector('.nav-list a[data-content="home"]').click();
+  </script>
+</body>
+</html>
