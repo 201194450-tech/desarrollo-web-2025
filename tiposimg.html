@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Practica de imagenes</title>
+    <meta name= "viewport" content="width">
+
+</head>
+<body><br></div>
+    <h1 style="font-size: 10vw;">practica imagenes</h1>
+    <H2>imagen normal</H2>
+    <img src="C:\Users\DanLeon\Downloads\tractor-9862727_640.jpg" alt="tractor estacionado de perfil derecho" style ="max-width:height: auto"; ><br>
+    <h2>imagen responsive</h2>
+    <img src="C:\Users\DanLeon\Downloads\tractor-9862727_640.jpg" alt="tractor estacionado de perfil derecho" style ="max-width: height: auto";><br>
+  <h2>uso del picture</h2>
+    <picture>
+    <source srcset="" style="width: 30%; height: auto;" media="(max-width: 600px)">
+  <source srcset="C:\Users\DanLeon\Downloads\fluffy-dog-9846034.jpg"style="width: 100%; height: auto;" media="(max-width: 1500px)">
+  <source srcset="C:\Users\DanLeon\Downloads\skeleton-23246_256.gif">
+  <img src="img_smallflower.jpg" alt="Flowers"><hr>
+  </picture>
+  <h2>mapa interactivo
+  </h2>
+  <svg viewbox="0 0 800 500" style="width: 100%; height:auto">
+  <rect x="50" y="50" width="700" height="400" fill="none" stroke="#666" stroke-width="3"/>
+  <line x1="400" y1="50" x2="400" y2="450" stroke="#666" stroke-width="2" stroke-dasharray="5"/>
+   
+  
+   <rect class="area-hover"
+   x="100" y="100" width="250" height="150"
+   fill="transparent"
+   stroke="red"
+   stroke width="2"
+   onclick="mostrarInfo('recepcion')"
+   style="cursor: pointer;"/>
+
+  <circle class="area-hover"
+   cx="600" cy="380" r="60"
+   fill="transparent"
+   stroke="red"
+   stroke width="2"
+   onclick="mostrarInfo('recepcion')"
+   style="cursor: pointer;"/>
+
+  <rect class="area-hover"
+   x="450" y="100" width="250" height="150"
+   fill="transparent"
+   stroke="red"
+   stroke width="2"
+   onclick="mostrarInfo('desarrollo')"
+   style="cursor: pointer;"/>
+
+  <rect class="area-hover"
+   x="100" y="300" width="180" height="100"
+   fill="transparent"
+   stroke="red"
+   stroke width="2"
+   onclick="mostrarInfo('recepcion')"
+   style="cursor: pointer;"/>
+   </svg>
+   <section id="infoPanel" class="info-box">
+    <h3>informacion del area</h3>
+    <p id="areaInfo">Haz click en cualquier area del plano para ver su informacion tecnica.</p>
+    <div id="areaDetails"></div>
+   </section>
+   <script>
+    const areasData={
+      recepcion: {
+        nombre:"recepcion y atencion al usuario",
+        responsable:"Ana Martínez",
+        equipos:"3 PCs, 1 ipresora, 1 telefono IP",
+        sistema:"sistema de tickets v2.1",
+        estado:"operativo"
+      },
+      desarrollo:{
+        nombre:"recepcion y atencion al usuario",
+        responsable:"Ana Martínez",
+        equipos:"3 PCs, 1 ipresora, 1 telefono IP",
+        sistema:"sistema de tickets v2.1",
+        estado:"operativo"
+      },
+    };
+    function mostrarInfo(areaKey) {
+      const area = areasData[areaKey];
+      const infoPanel = document.getElementById('areaInfo');
+      const detailsPanel = document.getElementById('areaDetails');
+    };
+     if (area) {
+
+                infoPanel.innerHTML = `<strong>${area.nombre}</strong>`;
+
+                detailsPanel.innerHTML = `
+
+                    <table>
+
+                        <tr>
+
+                            <td><strong>Responsable:</strong></td>
+
+                            <td>${area.responsable}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td><strong>Equipos:</strong></td>
+
+                            <td>${area.equipos}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td><strong>Sistema:</strong></td>
+
+                            <td>${area.sistema}</td>
+
+                        </tr>
+
+                        <tr>
+
+                            <td><strong>Estado:</strong></td>
+
+                            <td>${area.estado}</td>
+
+                        </tr>
+
+                    </table>
+
+                    <p>
+
+                        Última actualización: ${new Date().toLocaleString()}
+
+                    </p>
+
+                `;
+
+                
+
+
+
+            }
+
+        
+    
+   </script>
+</body>
+</html>
